@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.phoenixair.daos.FlightDetailDAO;
 import com.phoenixair.pojos.FlightDetail;
+import com.phoenixair.pojos.FlightUser;
 
 
 @Repository
@@ -78,7 +79,12 @@ public class FlightDetailDAOImp implements FlightDetailDAO {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.openSession();
 		///////////////////////////////////////////////nilay do it/////////////////
-		List<FlightDetail> FlightList = (List<FlightDetail>) session.createSQLQuery("select * from flightdetails3 where fcity='Mumbai' and tcity='Pune' and "+deptday+"='T';");
+		Query q = session.createQuery("from FlightDetail where tcity=:tcity ");
+		q.setString("tcity",to);
+		
+		List<FlightDetail>FlightList;
+		FlightList=q.list();
+		
 		session.close();
 		for (FlightDetail p : FlightList) {
 			logger.info("Flight List::" + p);

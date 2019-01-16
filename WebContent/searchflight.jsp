@@ -38,7 +38,8 @@
 					</div>
 					<div class="col-md-7 col-md-offset-1">
 						<div class="booking-form">
-							<form>
+						    <c:url var="addAction" value="/flight/display" ></c:url>
+							<form:form  action="${addAction}" >
 								<div class="form-group">
 									<div class="form-checkbox">
 										<label for="roundtrip">
@@ -49,23 +50,28 @@
 											<input type="radio" id="one-way" name="flight-type">
 											<span></span>One way
 										</label>
-										<label for="multi-city">
-											<input type="radio" id="multi-city" name="flight-type">
-											<span></span>Multi-City
-										</label>
+						
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
 											<span class="form-label">Flying from</span>
-											<input class="form-control" type="text" placeholder="City or airport">
+											<select class="form-control" name="source">
+												<option>Mumbai</option>
+												<option>Pune</option>
+												<option>Delhi</option>
+											</select>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<span class="form-label">Flyning to</span>
-											<input class="form-control" type="text" placeholder="City or airport">
+											<select class="form-control" name="destination">
+												<option>Mumbai</option>
+												<option>Pune</option>
+												<option>Delhi</option>
+											</select>
 										</div>
 									</div>
 								</div>
@@ -73,13 +79,13 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<span class="form-label">Departing</span>
-											<input class="form-control" type="date" required>
+											<input class="form-control" type="date"  name="departuredate" >
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<span class="form-label">Returning</span>
-											<input class="form-control" type="date" required>
+											<input class="form-control" type="date"  name="arivaldate">
 										</div>
 									</div>
 								</div>
@@ -112,7 +118,7 @@
 											<select class="form-control">
 												<option>Economy class</option>
 												<option>Business class</option>
-												<option>First class</option>
+					
 											</select>
 											<span class="select-arrow"></span>
 										</div>
@@ -121,13 +127,25 @@
 								<div class="form-btn">
 									<button class="submit-btn">Show flights</button>
 								</div>
-							</form>
+							</form:form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+	
+	<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2018 Copyright:
+    <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+</body>
 
 </html>

@@ -47,4 +47,11 @@ public class FlightDetailServiceImp implements FlightDetailService{
 		
 	}
 
+
+	@Override
+	public List<FlightDetail> listOneWayFlight(String from, String to, String arivalday, String deptday) {
+		// TODO Auto-generated method stub
+		return this.flightDetailDAO.listOneWayFlight(from, to, arivalday, deptday) ;
+	}
+
 }

@@ -4,7 +4,7 @@ prefix="c" %>
 prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" 
 prefix="form" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -15,25 +15,27 @@ prefix="form" %>
 <c:url var="addAction" value="/flightdetails" ></c:url> 
 <form:form  action="${addAction}" modelAttribute="flightdetail" style="width:550px; background-color:white; border-radius:3%">
 
+      From City:
+     <form:select path="fcity">
+    <form:options items="${cities}" />
+    </form:select>
+     <br>
+    
      To City:
     <form:select path="tcity">
     <form:options items="${cities}" />
     </form:select>
      <br>
      
-     From City:
-     <form:select path="fcity">
-    <form:options items="${cities}" />
-    </form:select>
-     <br>
+     
+      Departure Time
+    <form:input path="depttime" type="text" placeholder="Departure Time" /><br>
     
    
      Arrival Time
     <form:input path="arivaltime" type="text" placeholder="Arival Time" /><br>
     
-     Departure Time
-    <form:input path="depttime" type="text" placeholder="Departure Time" /><br>
-
+   
 
      Buisness Seat Price
     <form:input path="buisnessseatprice" type="text" placeholder=" Buisness Seat Price" /><br>
@@ -67,8 +69,8 @@ prefix="form" %>
 	<table class="tg" border="1">
 	<tr>
 		<th width="80">Flight ID</th>
-		<th width="120">To</th>
 		<th width="120">From</th>
+		<th width="120">To</th>
 		<th width="60">Arrival</th>
 		<th width="60">Departure</th>
 		<th width="60">Business Price</th>
@@ -80,8 +82,8 @@ prefix="form" %>
 <c:forEach items="${listFlight}" var="flightdetail">
 	<tr>
 			<td>${flightdetail.id}</td>
-			<td>${flightdetail.tcity}</td>
 			<td>${flightdetail.fcity}</td>
+			<td>${flightdetail.tcity}</td>
 			<td>${flightdetail.depttime}</td>
 			<td>${flightdetail.arivaltime}</td>
 			<td>${flightdetail.buisnessseatprice}</td>

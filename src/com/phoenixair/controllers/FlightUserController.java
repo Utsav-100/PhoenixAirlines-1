@@ -2,6 +2,7 @@ package com.phoenixair.controllers;
 
 import java.util.Arrays;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,10 +50,12 @@ public class FlightUserController {
 
 
 	@RequestMapping(value= {"/"})
-	public ModelAndView gohome()
+	public ModelAndView gohome(Model model)
 	{
 		
 		ModelAndView mv=new ModelAndView("index.jsp");
+		model.addAttribute("cities", Arrays.asList("Delhi", "Mumbai","Pune"));
+		model.addAttribute("listFlight",this.flightDetailService.listFlight());
 		
 		return mv;
 	}
@@ -84,7 +87,6 @@ public class FlightUserController {
 			this.flightusers.registerUser(f);
 					
 				
-			//model.addAttribute("login", new Login());
 		
 			return "redirect:/login";
 			
@@ -100,14 +102,21 @@ public class FlightUserController {
 			@ModelAttribute("login") 
 			@Valid Login l, 
 			BindingResult result, 
-			Model model
+			Model model,
+			HttpSession session
 			) {
 		
+			
 		
 		boolean status=this.flightusers.chkuser(l);
 		
 		if (status)
 		{
+			 session.setAttribute("email", l.getEmail());
+		//	 System.out.println(session.getAttribute("email"));
+
+			
+			
 			if(l.getEmail().equalsIgnoreCase("abc@gmail.com"))
 			{
 				
@@ -142,6 +151,18 @@ public class FlightUserController {
 		model.addAttribute("loginuser", new Login());
 		
 		return "login";
+		
+		
+	}
+	
+	@RequestMapping(value="user/logout")
+	public String logout(HttpSession session) {
+		
+		//model.addAttribute("loginuser", new Login());
+		
+		session.invalidate();
+		
+		return "redirect:/";
 		
 		
 	}

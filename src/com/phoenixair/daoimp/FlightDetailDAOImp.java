@@ -2,6 +2,7 @@ package com.phoenixair.daoimp;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.phoenixair.daos.FlightDetailDAO;
 import com.phoenixair.pojos.FlightDetail;
+
 
 @Repository
 public class FlightDetailDAOImp implements FlightDetailDAO {
@@ -59,8 +61,7 @@ public class FlightDetailDAOImp implements FlightDetailDAO {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.openSession();
 		tx=session.beginTransaction();
-		FlightDetail f = 
-		(FlightDetail) session.load(FlightDetail.class, new Integer(id));
+		FlightDetail f = (FlightDetail) session.load(FlightDetail.class, new Integer(id));
 		if (null != f) {
 			session.delete(f);
 			tx.commit();
@@ -71,6 +72,22 @@ public class FlightDetailDAOImp implements FlightDetailDAO {
 		logger.info("Flight deleted successfully, Flight details=" + f);
 		
 	}
+
+	@Override
+	public List<FlightDetail> listOneWayFlight(String from, String to, String arivalday, String deptday) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		///////////////////////////////////////////////nilay do it/////////////////
+		List<FlightDetail> FlightList = (List<FlightDetail>) session.createSQLQuery("select * from flightdetails3 where fcity='Mumbai' and tcity='Pune' and "+deptday+"='T';");
+		session.close();
+		for (FlightDetail p : FlightList) {
+			logger.info("Flight List::" + p);
+		}
+		return FlightList;
+	}
+
+	
+
 
 	
 }

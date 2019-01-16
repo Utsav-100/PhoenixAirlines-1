@@ -4,7 +4,7 @@ prefix="c" %>
 prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" 
 prefix="form" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -37,16 +37,27 @@ prefix="form" %>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        
-                        <a class="nav-link"  href="login">SignIn
-                        </a>
+                
+                  <% if (session.getAttribute("email") == null) { %>
+                    <li class="nav-item active">           
+                        <a class="nav-link"  href="login">SignIn</a>
                     </li>
                     
                     <li class="nav-item active">
                         <a class="nav-link"  href="user">SignUp</a>
                     </li>
                     
+                   <% } else {%>
+                      
+                    <li class="nav-item active">
+                        <a class="nav-link"  href="#">Welcome <%=session.getAttribute("email")%></a>
+                    </li>
+                    
+                    <li class="nav-item active">
+                        <a class="nav-link"  href="user/logout">Logout</a>
+                    </li>
+                    
+                    <% } %>
                 </ul>
             </div>
         </div>

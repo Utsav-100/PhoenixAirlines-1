@@ -219,7 +219,23 @@ public class FlightDetailController {
 		
 		String lastName1=request.getParameter("lastname2");
 		
+		String gender2=request.getParameter("gender2");
+		
+		String firstName2=request.getParameter("firstname2");
+		
+		String lastName2=request.getParameter("lastname2");
+		
+		String gender3=request.getParameter("gender3");
+		
+		String firstName3=request.getParameter("firstname3");
+		
+		String lastName3=request.getParameter("lastname3");
+		
 		Passengers p1=new Passengers();
+		Passengers p2=new Passengers();
+		Passengers p3=new Passengers();
+		
+		
 		
 		////////////////////////////////////
 		p1.setTitle(gender1);
@@ -228,7 +244,25 @@ public class FlightDetailController {
 		
 		/////////////////////////////////////
 		
-		session.setAttribute("passangerObject", p1);
+        ////////////////////////////////////
+		p2.setTitle(gender2);
+		p2.setFirstName(firstName2);
+		p2.setLastName(lastName2);
+
+		/////////////////////////////////////
+		
+		////////////////////////////////////
+		p3.setTitle(gender3);
+		p3.setFirstName(firstName3);
+		p3.setLastName(lastName3);
+
+		/////////////////////////////////////
+		
+		
+		
+		session.setAttribute("passangerObject1", p1);
+		session.setAttribute("passangerObject2", p2);
+		session.setAttribute("passangerObject3", p3);
 		
 		
 				
@@ -245,17 +279,33 @@ public class FlightDetailController {
 		System.out.println(seats);
 		
 		
-		Passengers p1=(Passengers)session.getAttribute("passangerObject");
+		Passengers p1=(Passengers)session.getAttribute("passangerObject1");
+		Passengers p2=(Passengers)session.getAttribute("passangerObject2");
+		Passengers p3=(Passengers)session.getAttribute("passangerObject3");
+		
 		FlightUser fu=(FlightUser)session.getAttribute("currentuser");
 		FlightDetail fd=(FlightDetail)session.getAttribute("flightDetail");
 		
-		p1.setSeatNo(seats);
+		String seatsarray[]=seats.split(",");
+		
+		System.out.println(seatsarray.toString());
+		p1.setSeatNo(seatsarray[0]);
 		p1.setfUser(fu);
 		p1.setFlightDetails(fd);
 		
-		session.setAttribute("finalpassanger",p1);
+		p2.setSeatNo(seatsarray[1]);
+		p2.setfUser(fu);
+		p2.setFlightDetails(fd);
 		
-	    System.out.println(p1);
+		p3.setSeatNo(seatsarray[2]);
+		p3.setfUser(fu);
+		p3.setFlightDetails(fd);
+		
+		session.setAttribute("finalpassanger1",p1);
+		session.setAttribute("finalpassanger2",p2);
+		session.setAttribute("finalpassanger3",p3);
+		
+	    
 		
 		
 				
@@ -268,11 +318,17 @@ public class FlightDetailController {
 	public String paymentdone(Model model,HttpSession session) {
 		
 		
-		Passengers p1=(Passengers)session.getAttribute("finalpassanger");
+		Passengers p1=(Passengers)session.getAttribute("finalpassanger1");
+		Passengers p2=(Passengers)session.getAttribute("finalpassanger2");
+		Passengers p3=(Passengers)session.getAttribute("finalpassanger3");
 		
-		System.out.println(p1); 
+		System.out.println(p1);
+		System.out.println(p2); 
+		System.out.println(p3); 
 		
-		this.flightDetailService.savePassengers(p1);		
+		this.flightDetailService.savePassengers(p1);
+		this.flightDetailService.savePassengers(p2);
+		this.flightDetailService.savePassengers(p3);
 		
 		return "ticket";
 	}

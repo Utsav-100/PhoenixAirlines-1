@@ -25,8 +25,8 @@ prefix="form" %>
 <body style="background-color:#f7f8f9" width="728px">
 <div align="center">
 <div align="center">
-	<h1><font color="#ee2e24">Login</font></h1>
-	<p><font color="#838384">It's free and only takes a minute.</font></p>
+	<h1><font color="#4fa3e3">SignIn</font></h1>
+	<br>
 </div>
 
 <c:url var="addAction" value="/regtologin" ></c:url> 
@@ -44,7 +44,7 @@ prefix="form" %>
     
        
     <div align="center"> 
-    <button  type="submit"><b>Login</b></button>
+    <button  type="submit"><b>SignIn</b></button>
 	</div>
   
   

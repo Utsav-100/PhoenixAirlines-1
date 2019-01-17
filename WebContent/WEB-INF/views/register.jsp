@@ -51,8 +51,8 @@ function validatePassword(){
 <body style="background-color:#f7f8f9" width="728px">
 <div align="center">
 <div align="center">
-	<h1><font color="#ee2e24">Sign up</font></h1>
-	<p><font color="#838384">It's free and only takes a minute.</font></p>
+	<h1><font color="#4fa3e3">Sign up</font></h1>
+	<br>
 </div>
 
 <c:url var="addAction" value="/user/add" ></c:url> 

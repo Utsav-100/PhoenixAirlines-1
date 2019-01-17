@@ -161,10 +161,9 @@ public class FlightUserController {
 		
 	}
 	
+	
 	@RequestMapping(value="user/logout")
 	public String logout(HttpSession session) {
-		
-		//model.addAttribute("loginuser", new Login());
 		
 		session.invalidate();
 		

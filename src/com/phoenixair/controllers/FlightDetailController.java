@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import com.phoenixair.pojos.FlightDetail;
-
+import com.phoenixair.pojos.FlightUser;
+import com.phoenixair.pojos.Passengers;
 import com.phoenixair.services.FlightDetailService;
 
 import sun.net.www.http.HttpCapture;
@@ -55,7 +57,8 @@ public class FlightDetailController {
 			@ModelAttribute("flightdetail") 
 			@Valid FlightDetail f1, 
 			BindingResult result, 
-			Model model)
+			Model model
+			)
 	{
 		
 		   
@@ -63,6 +66,8 @@ public class FlightDetailController {
 		   this.flightDetailService.saveFlight(f1);
 		   model.addAttribute("cities", Arrays.asList("Delhi", "Mumbai","Pune"));
 		   model.addAttribute("listFlight",this.flightDetailService.listFlight());
+		   
+		   
 		   
 		   return "admindashboard";
 			
@@ -84,7 +89,7 @@ public class FlightDetailController {
 	
 	
 	@RequestMapping(value="/flight/display")
-	public String oneway(Model model , HttpServletRequest request) {
+	public String oneway(Model model , HttpServletRequest request,HttpSession session) {
 		
 		
 		String fromcity=request.getParameter("source");
@@ -95,6 +100,21 @@ public class FlightDetailController {
 		
 		String arrivaldate=request.getParameter("arivaldate");
 		
+		String adultcount=request.getParameter("adult");
+				
+		String childcount=request.getParameter("child");
+		
+		int adultcountI=Integer.parseInt(adultcount);
+		
+		int childcountI=Integer.parseInt(childcount);
+		
+		session.setAttribute("adultcount", adultcountI);
+		
+		session.setAttribute("childcount", childcountI);
+		
+	//	System.out.println(adultcount+" "+childcount);
+		
+		
 	    String departday=null,arrivalday=null;
 		
 		try {
@@ -102,25 +122,25 @@ public class FlightDetailController {
 			System.out.println(d1.getDay());
 			switch (d1.getDay()) {
 			case 0:
-				departday = "Sunday";
+				departday = "sunday";
 			    break;
 			case 1:
-				departday = "Monday";
+				departday = "monday";
 			    break;
 			case 2:
-				departday = "Tuesday";
+				departday = "tuesday";
 			    break;
 			case 3:
-				departday = "Wednesday";
+				departday = "wednesday";
 			    break;
 			case 4:
-				departday = "Thursday";
+				departday = "thursday";
 			    break;
 			case 5:
-				departday = "Friday";
+				departday = "friday";
 			    break;
 			case 6:
-				departday = "Saturday";
+				departday = "saturday";
 			}
 			
 			
@@ -130,7 +150,7 @@ public class FlightDetailController {
 		}
 		
 		
-		try {
+	/*	try {
 			Date d2=new SimpleDateFormat("yyyy-MM-dd").parse(arrivaldate);
 			System.out.println(d2.getDay());
 			switch (d2.getDay()) {
@@ -160,7 +180,7 @@ public class FlightDetailController {
 			e.printStackTrace();
 		}
 		
-		 
+		 */
 		
 		
 		
@@ -171,6 +191,95 @@ public class FlightDetailController {
 		
 		return "displayflights";
 	}
+	
+	
+	
+	@RequestMapping("/book/{id}")
+	public String bookFlight(@PathVariable("id") int id,HttpSession session) {
+		
+		FlightDetail flightDetail=flightDetailService.getFlightById(id);
+		
+		session.setAttribute("flightDetail",flightDetail);
+		
+		System.out.println(flightDetail);
+		
+		
+		
+		
+		return "passanger";
+	}
+	
+	
+	@RequestMapping(value="/passengers")
+	public String passenger(Model model,HttpServletRequest request,HttpSession session) {
+		
+		String gender1=request.getParameter("gender1");
+			
+		String firstName1=request.getParameter("firstname1");
+		
+		String lastName1=request.getParameter("lastname2");
+		
+		Passengers p1=new Passengers();
+		
+		////////////////////////////////////
+		p1.setTitle(gender1);
+		p1.setFirstName(firstName1);
+		p1.setLastName(lastName1);
+		
+		/////////////////////////////////////
+		
+		session.setAttribute("passangerObject", p1);
+		
+		
+				
+		
+		return "seats";
+	}
+	
+	@RequestMapping(value="/payment")
+	public String payment(Model model,HttpServletRequest request,HttpSession session) {
+		
+		String seats=request.getParameter("seats");
+			
+		
+		System.out.println(seats);
+		
+		
+		Passengers p1=(Passengers)session.getAttribute("passangerObject");
+		FlightUser fu=(FlightUser)session.getAttribute("currentuser");
+		FlightDetail fd=(FlightDetail)session.getAttribute("flightDetail");
+		
+		p1.setSeatNo(seats);
+		p1.setfUser(fu);
+		p1.setFlightDetails(fd);
+		
+		session.setAttribute("finalpassanger",p1);
+		
+	    System.out.println(p1);
+		
+		
+				
+		
+		return "payment";
+	}
+	
+	
+	@RequestMapping(value="/paymentdone")
+	public String paymentdone(Model model,HttpSession session) {
+		
+		
+		Passengers p1=(Passengers)session.getAttribute("finalpassanger");
+		
+		System.out.println(p1); 
+		
+		this.flightDetailService.savePassengers(p1);		
+		
+		return "ticket";
+	}
+	
+	
+	
+	
 	
 	
 	

@@ -93,7 +93,7 @@
 									<div class="col-md-4">
 										<div class="form-group">
 											<span class="form-label">Adults (18+)</span>
-											<select class="form-control">
+											<select class="form-control" name="adult">
 												<option>1</option>
 												<option>2</option>
 												<option>3</option>
@@ -103,8 +103,8 @@
 									</div>
 									<div class="col-md-4">
 										<div class="form-group">
-											<span class="form-label">Children (0-17)</span>
-											<select class="form-control">
+											<span class="form-label"  >Children (0-17)</span>
+											<select class="form-control" name="child">
 												<option>0</option>
 												<option>1</option>
 												<option>2</option>

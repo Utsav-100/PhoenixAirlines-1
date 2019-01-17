@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.phoenixair.daos.FlightDetailDAO;
 import com.phoenixair.pojos.FlightDetail;
 import com.phoenixair.pojos.FlightUser;
+import com.phoenixair.pojos.Passengers;
 
 
 @Repository
@@ -75,21 +76,71 @@ public class FlightDetailDAOImp implements FlightDetailDAO {
 	}
 
 	@Override
-	public List<FlightDetail> listOneWayFlight(String from, String to, String arivalday, String deptday) {
+	public List<FlightDetail> listOneWayFlight(String fromCity, String toCity, String deptDay, String arivalDay){
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.openSession();
+		System.out.println("I in dao impl");
+		System.out.println("Depday"+deptDay);
 		///////////////////////////////////////////////nilay do it/////////////////
-		Query q = session.createQuery("from FlightDetail where tcity=:tcity ");
-		q.setString("tcity",to);
+		Query q = session.createQuery("from FlightDetail where fcity=:fcity and tcity=:tcity and "+deptDay+"=:T");
+		
+		q.setString("fcity",fromCity);
+		q.setString("tcity",toCity);
+		q.setString("T","T");
 		
 		List<FlightDetail>FlightList;
 		FlightList=q.list();
 		
-		session.close();
+	    session.close();
 		for (FlightDetail p : FlightList) {
 			logger.info("Flight List::" + p);
 		}
 		return FlightList;
+		
+	}
+
+	@Override
+	public FlightDetail getFlightById(int id) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		tx=session.beginTransaction();
+		Query q=session.createQuery("from FlightDetail  where id=:id");
+  
+		 q.setInteger("id", id);
+		 
+		 
+		
+		List<FlightDetail> u;
+		u= q.list();
+	
+		tx.commit();
+	//	session.close();
+		//logger.info("User details saved successfully,User Details");
+		
+		if(u.size()>0)
+		{
+		
+		  return u.get(0);
+		  
+		}
+		else
+		{
+		  return null;	
+		}
+		
+	}
+
+	@Override
+	public void savePassengers(Passengers p) {
+		
+		Session session = this.sessionFactory.openSession();
+		tx=session.beginTransaction();
+		session.save(p);
+		tx.commit();
+		session.close();
+		logger.info("Passanger details saved successfully="+p);
+	
+		
 	}
 
 	

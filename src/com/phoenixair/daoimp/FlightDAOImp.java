@@ -84,4 +84,37 @@ public class FlightDAOImp implements FlightUserDAO {
 		
 	}
 
+
+
+	@Override
+	public FlightUser getbyEmail(String email,String password) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		tx=session.beginTransaction();
+		Query q=session.createQuery("from FlightUser f where f.email=:email and f.password=:password ");
+     //	System.out.println(login.getEmail());
+		q.setString("email",email);
+		q.setString("password",password);
+		
+		List<FlightUser> u;
+		u= q.list();
+	
+		tx.commit();
+	//	session.close();
+		//logger.info("User details saved successfully,User Details");
+		
+		if(u.size()>0)
+		{
+		
+		  return u.get(0);
+		  
+		}
+		else
+		{
+		  return null;	
+		}
+		
+		
+	}
+
 }

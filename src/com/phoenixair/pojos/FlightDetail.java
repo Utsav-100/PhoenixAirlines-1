@@ -1,11 +1,14 @@
 package com.phoenixair.pojos;
 
 import java.util.Arrays;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -33,16 +36,23 @@ public class FlightDetail {
 	private String saturday;
 	private String sunday;
 	
+	@OneToMany(fetch=FetchType.EAGER)
+	private List<Passengers> passengers;
+	
 	
 	public FlightDetail() {
 		super();
 	}
 
+    
+	
 
-	public FlightDetail(String tcity, String fcity, String depttime, String arivaltime, String buisnessseatprice,
-			String economyseatprice, String monday, String tuesday, String wednesday, String thursday, String friday,
-			String saturday, String sunday) {
+
+	public FlightDetail(int id, String tcity, String fcity, String depttime, String arivaltime,
+			String buisnessseatprice, String economyseatprice, String monday, String tuesday, String wednesday,
+			String thursday, String friday, String saturday, String sunday, List<Passengers> passengers) {
 		super();
+		this.id = id;
 		this.tcity = tcity;
 		this.fcity = fcity;
 		this.depttime = depttime;
@@ -56,7 +66,12 @@ public class FlightDetail {
 		this.friday = friday;
 		this.saturday = saturday;
 		this.sunday = sunday;
+		this.passengers = passengers;
 	}
+
+
+
+
 
 
 	public int getId() {
@@ -198,6 +213,26 @@ public class FlightDetail {
 		this.sunday = sunday;
 	}
 
+	
+	
+
+	public List<Passengers> getPassengers() {
+		return passengers;
+	}
+
+
+
+
+
+
+	public void setPassengers(List<Passengers> passengers) {
+		this.passengers = passengers;
+	}
+
+
+
+
+
 
 	@Override
 	public String toString() {
@@ -205,8 +240,14 @@ public class FlightDetail {
 				+ ", arivaltime=" + arivaltime + ", buisnessseatprice=" + buisnessseatprice + ", economyseatprice="
 				+ economyseatprice + ", monday=" + monday + ", tuesday=" + tuesday + ", wednesday=" + wednesday
 				+ ", thursday=" + thursday + ", friday=" + friday + ", saturday=" + saturday + ", sunday=" + sunday
-				+ "]";
+				+ ", passengers=" + passengers + "]";
 	}
+
+
+
+
+
+
 	
 	
 	

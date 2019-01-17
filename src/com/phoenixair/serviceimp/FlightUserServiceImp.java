@@ -34,4 +34,10 @@ public class FlightUserServiceImp implements FlightUserService{
 		return flightUser.chkuser(login);
 	}
 
+	@Override
+	public FlightUser getbyEmail(String email, String password) {
+		// TODO Auto-generated method stub
+		return flightUser.getbyEmail(email, password);
+	}
+
 }

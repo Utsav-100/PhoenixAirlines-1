@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.phoenixair.daos.FlightDetailDAO;
 import com.phoenixair.pojos.FlightDetail;
+import com.phoenixair.pojos.Passengers;
 import com.phoenixair.services.FlightDetailService;
 
 @Service
@@ -49,9 +50,24 @@ public class FlightDetailServiceImp implements FlightDetailService{
 
 
 	@Override
-	public List<FlightDetail> listOneWayFlight(String from, String to, String arivalday, String deptday) {
+	public List<FlightDetail> listOneWayFlight(String from, String to, String deptday, String arivalday) {
 		// TODO Auto-generated method stub
-		return this.flightDetailDAO.listOneWayFlight(from, to, arivalday, deptday) ;
+		return this.flightDetailDAO.listOneWayFlight(from, to, deptday, arivalday) ;
+	}
+
+
+	@Override
+	public FlightDetail getFlightById(int id) {
+		// TODO Auto-generated method stub
+		return flightDetailDAO.getFlightById(id);
+	}
+
+
+	@Override
+	public void savePassengers(Passengers p) {
+		// TODO Auto-generated method stub
+		this.flightDetailDAO.savePassengers(p);
+		
 	}
 
 }

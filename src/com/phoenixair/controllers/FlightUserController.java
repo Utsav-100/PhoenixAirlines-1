@@ -114,6 +114,12 @@ public class FlightUserController {
 		{
 			 session.setAttribute("email", l.getEmail());
 		//	 System.out.println(session.getAttribute("email"));
+			 
+			 FlightUser currentuser=flightusers.getbyEmail(l.getEmail(), l.getPassword());
+			 
+		//	 System.out.println(fu);
+			 
+			 session.setAttribute("currentuser", currentuser);
 
 			
 			

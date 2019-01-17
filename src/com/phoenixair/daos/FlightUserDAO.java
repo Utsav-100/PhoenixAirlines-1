@@ -10,5 +10,6 @@ public interface FlightUserDAO {
 	
 	public void registerUser(FlightUser user);
     public boolean chkuser(Login login);
+    public FlightUser getbyEmail(String email,String password);
 
 }

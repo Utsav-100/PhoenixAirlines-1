@@ -326,7 +326,12 @@ prefix="form" %>
        
       </div>
       
+      
+      <label id=mylabel style="display: none;"><%=session.getAttribute("seatlist")%></label>
       <button class="button" id="confirm">Seats</button>
+      
+      
+      
       
       <c:url var="addAction" value="/payment" ></c:url>
       <form:form  action="${addAction}" >

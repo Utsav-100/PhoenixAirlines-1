@@ -15,5 +15,6 @@ public interface FlightDetailDAO {
 	public void removeFlight(int id);
 	public FlightDetail getFlightById(int id);
 	public void savePassengers(Passengers p);
+	public List<String> getAlreadyBookedSeats(FlightDetail fd);
 	
 }

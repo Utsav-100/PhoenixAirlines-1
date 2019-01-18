@@ -1,5 +1,6 @@
 package com.phoenixair.daoimp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -79,9 +80,6 @@ public class FlightDetailDAOImp implements FlightDetailDAO {
 	public List<FlightDetail> listOneWayFlight(String fromCity, String toCity, String deptDay, String arivalDay){
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.openSession();
-		System.out.println("I in dao impl");
-		System.out.println("Depday"+deptDay);
-		///////////////////////////////////////////////nilay do it/////////////////
 		Query q = session.createQuery("from FlightDetail where fcity=:fcity and tcity=:tcity and "+deptDay+"=:T");
 		
 		q.setString("fcity",fromCity);
@@ -135,12 +133,49 @@ public class FlightDetailDAOImp implements FlightDetailDAO {
 		
 		Session session = this.sessionFactory.openSession();
 		tx=session.beginTransaction();
+		if(p.getFirstName()!=null)
+		{
 		session.save(p);
+		}
 		tx.commit();
 		session.close();
 		logger.info("Passanger details saved successfully="+p);
 	
 		
+	}
+
+	@Override
+	public List<String> getAlreadyBookedSeats(FlightDetail fd) {
+		
+		Session session = this.sessionFactory.openSession();
+		Query q = session.createQuery("from Passengers where flightDetails=:flightDetails");
+		
+		q.setParameter("flightDetails", fd);
+		
+		
+		
+		List<Passengers>plist;
+		plist=q.list();
+		
+	    session.close();
+		
+	    for (Passengers p :plist ) {
+			logger.info("Flight List::" + p);
+		}
+		
+	    List<String>  seats = new ArrayList<String>();
+	    
+		for(Passengers p : plist ){
+			
+			if(p!=null)
+			{
+	       seats.add(p.getSeatNo());
+			}
+	    }
+		
+		return seats;
+		
+
 	}
 
 	

@@ -3,8 +3,10 @@ package com.phoenixair.controllers;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -65,6 +67,7 @@ public class FlightDetailController {
 		   
 		   this.flightDetailService.saveFlight(f1);
 		   model.addAttribute("cities", Arrays.asList("Delhi", "Mumbai","Pune"));
+		   
 		   model.addAttribute("listFlight",this.flightDetailService.listFlight());
 		   
 		   
@@ -264,8 +267,17 @@ public class FlightDetailController {
 		session.setAttribute("passangerObject2", p2);
 		session.setAttribute("passangerObject3", p3);
 		
+		//get Id form flightdetailsession
+		//call the already seats booked method
+		//store it in the session
 		
+		FlightDetail fd=(FlightDetail)session.getAttribute("flightDetail");
+		
+		List<String> seatslist=flightDetailService.getAlreadyBookedSeats(fd);
+		
+		session.setAttribute("seatlist", seatslist);
 				
+		//System.out.println(seatslist.toString());
 		
 		return "seats";
 	}
@@ -286,31 +298,56 @@ public class FlightDetailController {
 		FlightUser fu=(FlightUser)session.getAttribute("currentuser");
 		FlightDetail fd=(FlightDetail)session.getAttribute("flightDetail");
 		
-		String seatsarray[]=seats.split(",");
+		String seatsarray[]=new String[3];
+		
+        seatsarray=seats.split(",");
 		
 		System.out.println(seatsarray.toString());
-		p1.setSeatNo(seatsarray[0]);
+		
+		int i=0;
+		if(p1.getFirstName()!=null)
+		{
+		p1.setSeatNo(seatsarray[i]);
 		p1.setfUser(fu);
 		p1.setFlightDetails(fd);
+		i++;
+		}
 		
-		p2.setSeatNo(seatsarray[1]);
+		
+		if(p2.getFirstName()!=null)
+		{
+		p2.setSeatNo(seatsarray[i]);
 		p2.setfUser(fu);
 		p2.setFlightDetails(fd);
+		i++;
+		}
 		
-		p3.setSeatNo(seatsarray[2]);
+		if(p3.getFirstName()!=null)
+		{
+		p3.setSeatNo(seatsarray[i]);
 		p3.setfUser(fu);
 		p3.setFlightDetails(fd);
+		i++;
+		}
+	//	List<Passengers> passengers=new ArrayList<Passengers>(); 
+	//	passengers.add(p1);
+	//	passengers.add(p2);
+	//	passengers.add(p3);
+	
+	//	fd.setPassengers(passengers);
+		
+	//	fu.setPassengers(passengers);
+	//	fd.setPassengers(passengers);
+       
 		
 		session.setAttribute("finalpassanger1",p1);
 		session.setAttribute("finalpassanger2",p2);
 		session.setAttribute("finalpassanger3",p3);
-		
-	    
-		
-		
+	
 				
 		
 		return "payment";
+
 	}
 	
 	
@@ -321,6 +358,7 @@ public class FlightDetailController {
 		Passengers p1=(Passengers)session.getAttribute("finalpassanger1");
 		Passengers p2=(Passengers)session.getAttribute("finalpassanger2");
 		Passengers p3=(Passengers)session.getAttribute("finalpassanger3");
+	
 		
 		System.out.println(p1);
 		System.out.println(p2); 

@@ -70,4 +70,11 @@ public class FlightDetailServiceImp implements FlightDetailService{
 		
 	}
 
+
+	@Override
+	public List<String> getAlreadyBookedSeats(FlightDetail fd) {
+		// TODO Auto-generated method stub
+		return this.flightDetailDAO.getAlreadyBookedSeats(fd);
+	}
+
 }

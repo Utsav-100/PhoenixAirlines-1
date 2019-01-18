@@ -114,7 +114,7 @@ public class FlightDetailDAOImp implements FlightDetailDAO {
 		tx.commit();
 	//	session.close();
 		//logger.info("User details saved successfully,User Details");
-		
+		session.close();
 		if(u.size()>0)
 		{
 		

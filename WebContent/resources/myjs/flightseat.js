@@ -26,6 +26,8 @@ $(document).ready(function(){
 		  j=j+4;
 		 
 		 }
+	 
+	 $("#mylabel").empty();
 	  
    
     $("#confirm").click(function(){
@@ -61,7 +63,6 @@ $(document).ready(function(){
     	
     	 for(i=0;i<seatlist.length;i++)
      	{
-
          $("#"+seatlist[i]).prop( "disabled", true );
    
      	}
@@ -138,6 +139,4 @@ $(document).ready(function(){
      
     
 });
-
-
 

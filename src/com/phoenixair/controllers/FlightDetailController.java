@@ -275,7 +275,9 @@ public class FlightDetailController {
 		
 		List<String> seatslist=flightDetailService.getAlreadyBookedSeats(fd);
 		
-		session.setAttribute("seatlist", seatslist);
+		System.out.println(seatslist);
+		
+		session.setAttribute("seatlist1", seatslist);
 				
 		//System.out.println(seatslist.toString());
 		
@@ -368,6 +370,9 @@ public class FlightDetailController {
 		this.flightDetailService.savePassengers(p2);
 		this.flightDetailService.savePassengers(p3);
 		
+		session.invalidate();
+		
+	    
 		return "ticket";
 	}
 	

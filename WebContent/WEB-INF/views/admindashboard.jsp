@@ -16,8 +16,10 @@ prefix="form" %>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
   
   <script>
+  
+  
 
-var fromCity1 = document.getElementById("fromCity");
+ var fromCity1 = document.getElementById("fromCity");
  var toCity1 = document.getElementById("toCity");
  var depTime = document.getElementById("departureTime").value;
  var arrTime = document.getElementById("arrivalTime").value;
@@ -39,6 +41,7 @@ function validateCity(){
 </script>
 </head>
 <body>
+
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">

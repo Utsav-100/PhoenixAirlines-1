@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import com.phoenixair.pojos.FlightUser;
 import com.phoenixair.pojos.Login;
 
-
+@Service
 public interface FlightUserService {
 
 	public void registerUser(FlightUser user);

@@ -7,11 +7,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,29 +22,24 @@ import com.phoenixair.services.FlightDetailService;
 import com.phoenixair.services.FlightUserService;
 
 @Controller
-@ComponentScan
 public class FlightUserController {
 
 
 	
 	private FlightUserService flightusers;
-	private FlightDetailService flightDetailService;
 	
-	@Autowired
+
+    @Autowired
 	public void setFlightusers(FlightUserService flightusers) {
 		this.flightusers = flightusers;
-		
-		
 	}
-	
-	
-	
-	@Autowired
+
+    private FlightDetailService flightDetailService;
+    
+    @Autowired
 	public void setFlightDetailService(FlightDetailService flightDetailService) {
 		this.flightDetailService = flightDetailService;
 	}
-
-
 
 
 	@RequestMapping(value= {"/"})
@@ -151,7 +144,7 @@ public class FlightUserController {
 		
 	}
 	
-	@RequestMapping(value="/login")
+	@RequestMapping(value= "/login")
 	public String login(Model model) {
 		
 		model.addAttribute("loginuser", new Login());
@@ -161,9 +154,9 @@ public class FlightUserController {
 		
 	}
 	
-	
 	@RequestMapping(value="user/logout")
 	public String logout(HttpSession session) {
+		
 		
 		session.invalidate();
 		

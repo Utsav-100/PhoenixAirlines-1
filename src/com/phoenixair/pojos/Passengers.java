@@ -7,9 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="passengers")
+@Table(name="passengers1")
 public class Passengers {
 	
 	@Id
@@ -29,7 +30,7 @@ public class Passengers {
 	@Column(name="lastName")
 	private String lastName;
 	
-
+    @NotNull
 	@Column(name="seatNo")
 	private String seatNo;
 	

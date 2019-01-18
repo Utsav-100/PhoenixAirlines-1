@@ -68,6 +68,7 @@ public class FlightDAOImp implements FlightUserDAO {
 		u= q.list();
 	
 		tx.commit();
+		session.close();
 	//	session.close();
 		//logger.info("User details saved successfully,User Details");
 		
@@ -100,6 +101,7 @@ public class FlightDAOImp implements FlightUserDAO {
 		u= q.list();
 	
 		tx.commit();
+		session.close();
 	//	session.close();
 		//logger.info("User details saved successfully,User Details");
 		

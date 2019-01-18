@@ -92,7 +92,7 @@
 								<div class="row">
 									<div class="col-md-4">
 										<div class="form-group">
-											<span class="form-label">Adults (18+)</span>
+											<span class="form-label">Passenger</span>
 											<select class="form-control" name="adult">
 												<option>1</option>
 												<option>2</option>

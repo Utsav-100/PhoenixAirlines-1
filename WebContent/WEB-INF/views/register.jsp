@@ -46,8 +46,6 @@ function validatePassword(){
 
 </head>
 
-
-
 <body style="background-color:#f7f8f9" width="728px">
 <div align="center">
 <div align="center">

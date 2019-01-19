@@ -47,14 +47,14 @@ rel="stylesheet" />
         <div class="sub-content">
           <span class="watermark">Air Phoenix</span>
           <!--get passenger name-->
-          <span class="name">PASSENGER NAME<br><span><%=session.getAttribute("passname1")%></span></span>
+          <span class="name">PASSENGER NAME<br><span><%=session.getAttribute("passname3")%></span></span>
 
           <!--get flight id-->
           <span class="flight">FLIGHT N&deg;<br><span>PHNX<%=session.getAttribute("flightid")%></span></span>
           <span class="gate">GATE<br><span>11B</span></span>
 
           <!--seat no-->
-          <span class="seat">SEAT<br><span><%=session.getAttribute("seat1")%></span></span>
+          <span class="seat">SEAT<br><span><%=session.getAttribute("seat3")%></span></span>
 
 
           <!--get dep time and dep date-->
@@ -63,9 +63,9 @@ rel="stylesheet" />
            <!--get flight id-->
            <span class="flight flightslip">FLIGHT N&deg;<br><span>PHNX-<%=session.getAttribute("flightid")%></span></span>
            <!--seat no-->
-            <span class="seat seatslip">SEAT<br><span><%=session.getAttribute("seat1")%></span></span>
+            <span class="seat seatslip">SEAT<br><span><%=session.getAttribute("seat3")%></span></span>
              <!--get passenger name-->
-           <span class="name nameslip">PASSENGER NAME<br><span><%=session.getAttribute("passname1")%></span></span>
+           <span class="name nameslip">PASSENGER NAME<br><span><%=session.getAttribute("passname3")%></span></span>
         </div>
       </div>
      <!-- <div class="barcode"></div>
@@ -74,12 +74,8 @@ rel="stylesheet" />
   </div>
   <input type="button" value="print pdf" onclick="myscript()">
   <br>
-  
-   <% if ((int)session.getAttribute("adultcount")==2 || (int)session.getAttribute("adultcount")==3) { %>
-  <a href=goticket>Next</a>
-   <%}%>
-   
   <a href="index.jsp">Home</a>
+  
   </body>
 </body>
 </html>

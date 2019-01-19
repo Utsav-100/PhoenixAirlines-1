@@ -1,19 +1,20 @@
 $(document).ready(function(){
 
-    var cars = ["1C", "2C", "3C","4C"];
+   // var cars = ["1C", "2C", "3C","4C"];
     var count= 0
     var seats=[];
     var noofseats=$("#seatcount").text();
     
     
-    for(i=0;i<cars.length;i++)
-    	{
+ //   for(i=0;i<cars.length;i++)
+  //  	{
 
-    $("#"+cars[i]).prop( "disabled", true );
+  //  $("#"+cars[i]).prop( "disabled", true );
   
-    	}
+  //  	}
     
      var seatlist=document.getElementById('mylabel').textContent;
+     
      var i=1;
 	 var j=2;
 	 while(i<seatlist.length-1)

@@ -16,15 +16,16 @@ prefix="form" %>
 <body>
       <label id=mylabel><%=session.getAttribute("seatlist1")%></label>
       
-      <button class="button" id="confirm">Seats</button>
-      
+      <button class="button" id="confirm">Confirm Seats</button>
+      <br>
       
       
       
       <c:url var="addAction" value="/payment" ></c:url>
       <form:form  action="${addAction}" >
       <input type="text" name="seats" id="seats"></input>
-      <button class="button">Procced</button>
+      <br>
+      <button class="button">Proceed</button>
       </form:form>
   
   <!--flight seat-->
@@ -305,27 +306,27 @@ prefix="form" %>
             <ol class="seats" type="A">
               <li class="seat">
                 <input type="checkbox" id="10A" value="10A" name="fseat"/>
-                <label for="10A">10A</label>
+                <label for="10A">0A</label>
               </li>
               <li class="seat">
                 <input type="checkbox" id="10B" value="10B" name="fseat"/>
-                <label for="10B">10B</label>
+                <label for="10B">0B</label>
               </li>
               <li class="seat">
                 <input type="checkbox" id="10C" value="10C" name="fseat"/>
-                <label for="10C">10C</label>
+                <label for="10C">0C</label>
               </li>
               <li class="seat">
                 <input type="checkbox" id="10D" value="10D" name="fseat"/>
-                <label for="10D">10D</label>
+                <label for="10D">0D</label>
               </li>
               <li class="seat">
                 <input type="checkbox" id="10E" value="10E" name="fseat"/>
-                <label for="10E">10E</label>
+                <label for="10E">0E</label>
               </li>
               <li class="seat">
                 <input type="checkbox" id="10F" value="10F" name="fseat"/>
-                <label for="10F">10F</label>
+                <label for="10F">0F</label>
               </li>
             </ol>
           </li>

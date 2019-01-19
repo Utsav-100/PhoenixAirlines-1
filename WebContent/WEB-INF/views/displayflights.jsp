@@ -19,42 +19,7 @@ prefix="form" %>
 </head>
 <body>
 
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="">Phoenix</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                
-                  <% if (session.getAttribute("email") == null) { %>
-                    <li class="nav-item active">           
-                        <a class="nav-link"  href="login">SignIn</a>
-                    </li>
-                    
-                    <li class="nav-item active">
-                        <a class="nav-link"  href="user">SignUp</a>
-                    </li>
-                    
-                   <% } else {%>
-                      
-                    <li class="nav-item active">
-                        <a class="nav-link"  href="#">Welcome <%=session.getAttribute("email")%></a>
-                    </li>
-                    
-                    <li class="nav-item active">
-                        <a class="nav-link"  href="user/logout">Logout</a>
-                    </li>
-                    
-                    <% } %>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
- <br><br><br>
+    <br>
 
     <table class="table" border="1">
 	<thead class="thead-dark">
@@ -64,8 +29,13 @@ prefix="form" %>
 		<th width="120">To</th>
 		<th width="60">Arrival</th>
 		<th width="60">Departure</th>
+	    <%String flightClass=(String)session.getAttribute("flightclass"); %>
+		<% if(flightClass.equals("Business")) { %>
 		<th width="60">Business Price</th>
+		<%}%>
+		<% if(flightClass.equals("Economy")) { %>
 		<th width="60">Economy Price</th>
+	    <%}%>
 		<th width="60">Booking</th>
 
 		
@@ -79,8 +49,12 @@ prefix="form" %>
 			<td>${flightdetail1.tcity}</td>
 			<td>${flightdetail1.depttime}</td>
 			<td>${flightdetail1.arivaltime}</td>
+			<% if(flightClass.equals("Business")) { %>
 			<td>${flightdetail1.buisnessseatprice}</td>
+			<%}%>
+			<% if(flightClass.equals("Economy")) { %>
 			<td>${flightdetail1.economyseatprice}</td>
+			<%}%>
 			<td><a href="
 			<c:url value='/book/${flightdetail1.id}' />" ><p class="text-danger">Book</p></a>
 			</td>

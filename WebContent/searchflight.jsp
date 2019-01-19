@@ -32,8 +32,8 @@
 				<div class="row">
 					<div class="col-md-4">
 						<div class="booking-cta">
-							<h1>Book your flight today</h1>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate laboriosam numquam at</p>
+							<h1>Book your flight with PHOENIX</h1>
+							<p>Fly the friendly skies.</p>
 						</div>
 					</div>
 					<div class="col-md-7 col-md-offset-1">
@@ -66,7 +66,7 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<span class="form-label">Flyning to</span>
+											<span class="form-label">Flying to</span>
 											<select class="form-control" name="destination">
 												<option>Mumbai</option>
 												<option>Pune</option>
@@ -115,9 +115,9 @@
 									<div class="col-md-4">
 										<div class="form-group">
 											<span class="form-label">Travel class</span>
-											<select class="form-control">
-												<option>Economy class</option>
-												<option>Business class</option>
+											<select class="form-control" name="class">
+												<option>Economy</option>
+												<option>Business</option>
 					
 											</select>
 											<span class="select-arrow"></span>

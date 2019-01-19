@@ -14,11 +14,11 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.http.HttpRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +29,7 @@ import com.phoenixair.pojos.FlightUser;
 import com.phoenixair.pojos.Passengers;
 import com.phoenixair.services.FlightDetailService;
 
-import sun.net.www.http.HttpCapture;
+
 
 @Controller
 @ComponentScan
@@ -107,6 +107,11 @@ public class FlightDetailController {
 				
 		String childcount=request.getParameter("child");
 		
+	    String flightclass=request.getParameter("class");
+	    
+	    System.out.println(flightclass);		
+	    		
+		
 		int adultcountI=Integer.parseInt(adultcount);
 		
 		int childcountI=Integer.parseInt(childcount);
@@ -114,6 +119,10 @@ public class FlightDetailController {
 		session.setAttribute("adultcount", adultcountI);
 		
 		session.setAttribute("childcount", childcountI);
+		
+		session.setAttribute("flightclass", flightclass);
+		
+		session.setAttribute("deptdate", departuredate);
 		
 	//	System.out.println(adultcount+" "+childcount);
 		
@@ -204,6 +213,13 @@ public class FlightDetailController {
 		
 		session.setAttribute("flightDetail",flightDetail);
 		
+		session.setAttribute("flightid", flightDetail.getId());
+		session.setAttribute("flightfrom", flightDetail.getFcity());
+		session.setAttribute("flightto", flightDetail.getTcity());
+		session.setAttribute("depttime",flightDetail.getDepttime());
+		
+		
+		
 		System.out.println(flightDetail);
 		
 		
@@ -220,7 +236,7 @@ public class FlightDetailController {
 			
 		String firstName1=request.getParameter("firstname1");
 		
-		String lastName1=request.getParameter("lastname2");
+		String lastName1=request.getParameter("lastname1");
 		
 		String gender2=request.getParameter("gender2");
 		
@@ -245,12 +261,16 @@ public class FlightDetailController {
 		p1.setFirstName(firstName1);
 		p1.setLastName(lastName1);
 		
+		session.setAttribute("passname1",firstName1+" "+lastName1);
+		
 		/////////////////////////////////////
 		
         ////////////////////////////////////
 		p2.setTitle(gender2);
 		p2.setFirstName(firstName2);
 		p2.setLastName(lastName2);
+		
+		session.setAttribute("passname2",firstName2+" "+lastName2);
 
 		/////////////////////////////////////
 		
@@ -261,7 +281,8 @@ public class FlightDetailController {
 
 		/////////////////////////////////////
 		
-		
+
+		session.setAttribute("passname3",firstName3+" "+lastName3);
 		
 		session.setAttribute("passangerObject1", p1);
 		session.setAttribute("passangerObject2", p2);
@@ -275,6 +296,7 @@ public class FlightDetailController {
 		
 		List<String> seatslist=flightDetailService.getAlreadyBookedSeats(fd);
 		
+		System.out.println("Already booked seats");
 		System.out.println(seatslist);
 		
 		session.setAttribute("seatlist1", seatslist);
@@ -310,6 +332,7 @@ public class FlightDetailController {
 		if(p1.getFirstName()!=null)
 		{
 		p1.setSeatNo(seatsarray[i]);
+		session.setAttribute("seat1",p1.getSeatNo());
 		p1.setfUser(fu);
 		p1.setFlightDetails(fd);
 		i++;
@@ -319,6 +342,7 @@ public class FlightDetailController {
 		if(p2.getFirstName()!=null)
 		{
 		p2.setSeatNo(seatsarray[i]);
+		session.setAttribute("seat2",p2.getSeatNo());
 		p2.setfUser(fu);
 		p2.setFlightDetails(fd);
 		i++;
@@ -327,6 +351,7 @@ public class FlightDetailController {
 		if(p3.getFirstName()!=null)
 		{
 		p3.setSeatNo(seatsarray[i]);
+		session.setAttribute("seat3",p3.getSeatNo());
 		p3.setfUser(fu);
 		p3.setFlightDetails(fd);
 		i++;
@@ -346,9 +371,17 @@ public class FlightDetailController {
 		session.setAttribute("finalpassanger2",p2);
 		session.setAttribute("finalpassanger3",p3);
 	
-				
+		
+		if(session.getAttribute("email")==null)
+		{
+		return "register";
+			
+		}
+		else
+		{
 		
 		return "payment";
+		}
 
 	}
 	
@@ -366,15 +399,34 @@ public class FlightDetailController {
 		System.out.println(p2); 
 		System.out.println(p3); 
 		
+		//if(session.getAttribute(""))
+		
 		this.flightDetailService.savePassengers(p1);
 		this.flightDetailService.savePassengers(p2);
 		this.flightDetailService.savePassengers(p3);
 		
-		session.invalidate();
+		System.out.println("welcome to AirPhoenix");
 		
 	    
 		return "ticket";
 	}
+	
+	@RequestMapping(value="/goticket")
+	public String nextticket(Model model,HttpSession session) {
+		
+
+	    
+		return "ticket1";
+	}
+	
+	@RequestMapping(value="/goticket1")
+	public String nextticket1(Model model,HttpSession session) {
+		
+
+	    
+		return "ticket2";
+	}
+	
 	
 	
 	

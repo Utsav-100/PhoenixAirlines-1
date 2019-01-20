@@ -1,5 +1,6 @@
 package com.phoenixair.pojos;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,10 +36,10 @@ public class Passengers {
 	private String seatNo;
 	
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private FlightUser fUser;  //referring flight user class
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private FlightDetail flightDetails; // referring flight detail class
 
 	public Passengers() {

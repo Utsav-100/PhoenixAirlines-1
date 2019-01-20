@@ -45,7 +45,7 @@ function validateCity(){
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="">Phoenix</a>
+            <a class="navbar-brand" href="index.jsp">Phoenix</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -96,7 +96,7 @@ function validateCity(){
      </div>
     
     <div class="form-group mx-sm-3 mb-2">
-     To City:
+    <strong>  To City:</strong>
     <form:select path="tcity" class="form-control" id = "toCity" >
     <form:options items="${cities}" />
     </form:select>
@@ -104,27 +104,27 @@ function validateCity(){
      </div>
      
      <div class="form-group mx-sm-3 mb-2">
-      Departure Time
+     <strong>  Departure Time </strong>
     <form:input path="depttime" type="time" placeholder="Departure Time" class="form-control" id="departureTime" required="required" /><br>
     </div>
     
    <div class="form-group mx-sm-3 mb-2">
-     Arrival Time
+    <strong>  Arrival Time </strong>
     <form:input path="arivaltime" type="time" placeholder="Arrival Time" class="form-control" id="arrivalTime"  required="required" /><br>
     </div>
    
 <div class="form-group mx-sm-3 mb-2">
-     Business Seat Price
+   <strong>   Business Seat Price </strong>
     <form:input path="buisnessseatprice" type="text" placeholder="Seat Price" class="form-control" id="Bsp" required="required"/><br>
     </div>
     
     <div class="form-group mx-sm-3 mb-2">
-     Economy Seat Price
+    <strong>  Economy Seat Price </strong>
     <form:input path="economyseatprice" type="text" placeholder="Seat Price" class="form-control" id="Esp" required="required"/><br>
    </div>
    <div class="w-100"></div>
    <div class="form-group mx-sm-3 mb-2">
-     Operations Days: <br>
+    <strong>  Operations Days: </strong><br>
      <label class="form-check-label" for="exampleCheck1">Monday</label>&nbsp;&nbsp; <form:checkbox   path="monday" value="T"/>
      <label class="form-check-label" for="exampleCheck2">Tuesday</label>&nbsp;&nbsp;  <form:checkbox  path="tuesday" value="T"/>
     <label class="form-check-label" for="exampleCheck3">Wednesday</label>&nbsp;&nbsp; <form:checkbox path="wednesday" value="T"/>

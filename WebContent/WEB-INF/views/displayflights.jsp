@@ -4,7 +4,7 @@ prefix="c" %>
 prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" 
 prefix="form" %>
-<%@ page session="true" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,9 +18,24 @@ prefix="form" %>
  
 </head>
 <body>
-
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Phoenix</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                
+                  
+                </ul>
+            </div>
+        </div>
+    </nav>
     <br>
-
+    <br>
+    <br>
     <table class="table" border="1">
 	<thead class="thead-dark">
 	<tr>

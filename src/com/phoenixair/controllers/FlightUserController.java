@@ -22,6 +22,7 @@ import com.phoenixair.services.FlightDetailService;
 import com.phoenixair.services.FlightUserService;
 
 @Controller
+@ComponentScan
 public class FlightUserController {
 
 
@@ -41,7 +42,7 @@ public class FlightUserController {
 		this.flightDetailService = flightDetailService;
 	}
 
-
+    //to go to the index
 	@RequestMapping(value= {"/"})
 	public ModelAndView gohome(Model model)
 	{
@@ -53,7 +54,7 @@ public class FlightUserController {
 		return mv;
 	}
 	
-	
+	// click signup and go to register page 
 	@RequestMapping(value="/user")
 	public String listEmployee(Model model) {
 		
@@ -66,7 +67,7 @@ public class FlightUserController {
 	
 	
 	
-	
+	// after clicking signup button on register.jsp and go to login
 	@RequestMapping(value = "/user/add")
 	public String addPerson(
 			@ModelAttribute("flightuser") 
@@ -79,8 +80,6 @@ public class FlightUserController {
 		   
 			this.flightusers.registerUser(f);
 					
-				
-		
 			return "redirect:/login";
 			
 
@@ -89,7 +88,7 @@ public class FlightUserController {
 	
 	
 	
-	
+	//check wheather the user is a registered user 
 	@RequestMapping(value="/regtologin" , method = RequestMethod.POST)
 	public String loginuser(
 			@ModelAttribute("login") 
@@ -106,12 +105,8 @@ public class FlightUserController {
 		if (status)
 		{
 			 session.setAttribute("email", l.getEmail());
-		//	 System.out.println(session.getAttribute("email"));
-			 
 			 FlightUser currentuser=flightusers.getbyEmail(l.getEmail(), l.getPassword());
-			 
-		//	 System.out.println(fu);
-			 
+			 			 
 			 session.setAttribute("currentuser", currentuser);
 
 			
@@ -144,6 +139,7 @@ public class FlightUserController {
 		
 	}
 	
+	//go to login.jsp
 	@RequestMapping(value= "/login")
 	public String login(Model model) {
 		
@@ -154,6 +150,7 @@ public class FlightUserController {
 		
 	}
 	
+	//logout the user and destroy the session 
 	@RequestMapping(value="user/logout")
 	public String logout(HttpSession session) {
 		
@@ -167,8 +164,6 @@ public class FlightUserController {
 	
 	
 	
-	
-
 	
 	
 	

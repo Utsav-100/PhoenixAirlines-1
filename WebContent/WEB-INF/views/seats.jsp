@@ -12,6 +12,7 @@ prefix="form" %>
 <link href="${pageContext.request.contextPath}/resources/css/flightseat.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 <script src="${pageContext.request.contextPath}/resources/myjs/flightseat.js"></script> 
+
 </head>
 <body>
       <label id=mylabel><%=session.getAttribute("seatlist1")%></label>
@@ -23,12 +24,13 @@ prefix="form" %>
       
       <c:url var="addAction" value="/payment" ></c:url>
       <form:form  action="${addAction}" >
-      <input type="text" name="seats" id="seats"></input>
+      <input type="text" name="seats" id="seats" required></input>
       <br>
       <button class="button">Proceed</button>
       </form:form>
   
   <!--flight seat-->
+    <label>Count</label>
    <label id="seatcount"><%=session.getAttribute("adultcount")%></label>
     <div class="plane" >
         <div class="cockpit">

@@ -72,14 +72,14 @@ rel="stylesheet" />
       <div class="barcode slip"></div>-->
     </div>
   </div>
-  <input type="button" value="print pdf" onclick="myscript()">
+ <input type="button" class="button" value="print pdf" onclick="myscript()">
   <br>
   
    <% if ((int)session.getAttribute("adultcount")==2 || (int)session.getAttribute("adultcount")==3) { %>
-  <a href=goticket>Next</a>
+  <button><a href=goticket>Next</a></button>
    <%}%>
    
-  <a href="index.jsp">Home</a>
+  <button><a href="index.jsp">Home</a></button>
   </body>
 </body>
 </html>

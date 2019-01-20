@@ -36,11 +36,11 @@ prefix="form" %>
   
    
     <label for="E-mail">Email </label><br>
-    <form:input  path="email" type="email"  placeholder="Enter Email"/><br>
+    <form:input  path="email" type="email"  placeholder="Enter Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/><br>
     
    
     <label for="pass">Password</label>
-    <form:input path="password" type="password" placeholder="Enter Password" /></br>
+    <form:input path="password" type="password" placeholder="Enter Password" required="required"/></br>
     
        
     <div align="center"> 

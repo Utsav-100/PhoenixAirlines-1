@@ -47,17 +47,19 @@ prefix="form" %>
                   <div class="personal-info">
                      <p>Gender</p>
                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender1" value="option1" checked="">
+                        <input class="form-check-input" type="radio" name="gender1" value="M" checked="">
                         <label class="form-check-label">
                         Male
                         </label>
                      </div>
                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender1" value="option2" checked="">
+                        <input class="form-check-input" type="radio" name="gender1" value="F" checked="">
                         <label class="form-check-label">
                         Female
                         </label>
+                     
                      </div>
+                    
                   </div>
                </div>
                <div class="form-left-to-w3l">

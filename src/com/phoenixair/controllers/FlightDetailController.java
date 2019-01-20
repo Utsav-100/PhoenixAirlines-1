@@ -3,7 +3,6 @@ package com.phoenixair.controllers;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -43,7 +42,7 @@ public class FlightDetailController {
 		this.flightDetailService = flightDetailService;
 	}
 	
-	
+	//to go to admindashboard
 	@RequestMapping(value="/admin")
 	public String admin(Model model) {
 		model.addAttribute("flightdetail", new FlightDetail());
@@ -54,6 +53,7 @@ public class FlightDetailController {
 	}
 	
 	
+	//when we addflight at the admindashboard
 	@RequestMapping(value = "/flightdetails")
 	public String flightdisplay(
 			@ModelAttribute("flightdetail") 
@@ -77,7 +77,7 @@ public class FlightDetailController {
 
 	}
 	
-	
+	//Admin will delete a flight 
 	@RequestMapping("/remove/{id}")
 	public String removeFlight(@PathVariable("id") int id) {
 		if (id > 0) {
@@ -90,7 +90,7 @@ public class FlightDetailController {
 		return "redirect:/admin";
 	}
 	
-	
+	//go from search to flight display
 	@RequestMapping(value="/flight/display")
 	public String oneway(Model model , HttpServletRequest request,HttpSession session) {
 		
@@ -196,7 +196,7 @@ public class FlightDetailController {
 		
 		
 		
-		System.out.println(fromcity+" "+tocity+" "+departuredate+" "+arrivaldate+" "+departday+" "+arrivalday);
+	//	System.out.println(fromcity+" "+tocity+" "+departuredate+" "+arrivaldate+" "+departday+" "+arrivalday);
 		 
 		model.addAttribute("listFlightOneWay",this.flightDetailService.listOneWayFlight(fromcity,tocity, departday, arrivalday));
 		
@@ -205,7 +205,7 @@ public class FlightDetailController {
 	}
 	
 	
-	
+	//the flight which user wants to book pass the id
 	@RequestMapping("/book/{id}")
 	public String bookFlight(@PathVariable("id") int id,HttpSession session) {
 		
@@ -220,7 +220,7 @@ public class FlightDetailController {
 		
 		
 		
-		System.out.println(flightDetail);
+	//	System.out.println(flightDetail);
 		
 		
 		
@@ -228,7 +228,7 @@ public class FlightDetailController {
 		return "passanger";
 	}
 	
-	
+	// collecting data from user about passengers
 	@RequestMapping(value="/passengers")
 	public String passenger(Model model,HttpServletRequest request,HttpSession session) {
 		
@@ -296,8 +296,8 @@ public class FlightDetailController {
 		
 		List<String> seatslist=flightDetailService.getAlreadyBookedSeats(fd);
 		
-		System.out.println("Already booked seats");
-		System.out.println(seatslist);
+		//System.out.println("Already booked seats");
+		//System.out.println(seatslist);
 		
 		session.setAttribute("seatlist1", seatslist);
 				
@@ -306,13 +306,14 @@ public class FlightDetailController {
 		return "seats";
 	}
 	
+	//go to seats.jsp
 	@RequestMapping(value="/payment")
 	public String payment(Model model,HttpServletRequest request,HttpSession session) {
 		
 		String seats=request.getParameter("seats");
 			
 		
-		System.out.println(seats);
+		//System.out.println(seats);
 		
 		
 		Passengers p1=(Passengers)session.getAttribute("passangerObject1");
@@ -356,15 +357,7 @@ public class FlightDetailController {
 		p3.setFlightDetails(fd);
 		i++;
 		}
-	//	List<Passengers> passengers=new ArrayList<Passengers>(); 
-	//	passengers.add(p1);
-	//	passengers.add(p2);
-	//	passengers.add(p3);
 	
-	//	fd.setPassengers(passengers);
-		
-	//	fu.setPassengers(passengers);
-	//	fd.setPassengers(passengers);
        
 		
 		session.setAttribute("finalpassanger1",p1);
@@ -372,20 +365,14 @@ public class FlightDetailController {
 		session.setAttribute("finalpassanger3",p3);
 	
 		
-		if(session.getAttribute("email")==null)
-		{
-		return "register";
-			
-		}
-		else
-		{
+		
 		
 		return "payment";
-		}
+		
 
 	}
 	
-	
+	//go after payment done to save passenger
 	@RequestMapping(value="/paymentdone")
 	public String paymentdone(Model model,HttpSession session) {
 		
@@ -395,9 +382,9 @@ public class FlightDetailController {
 		Passengers p3=(Passengers)session.getAttribute("finalpassanger3");
 	
 		
-		System.out.println(p1);
-		System.out.println(p2); 
-		System.out.println(p3); 
+		//System.out.println(p1);
+		//System.out.println(p2); 
+		//System.out.println(p3); 
 		
 		//if(session.getAttribute(""))
 		
@@ -405,7 +392,7 @@ public class FlightDetailController {
 		this.flightDetailService.savePassengers(p2);
 		this.flightDetailService.savePassengers(p3);
 		
-		System.out.println("welcome to AirPhoenix");
+		//System.out.println("welcome to AirPhoenix");
 		
 	    
 		return "ticket";

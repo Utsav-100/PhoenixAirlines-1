@@ -72,9 +72,9 @@ rel="stylesheet" />
       <div class="barcode slip"></div>-->
     </div>
   </div>
-  <input type="button" value="print pdf" onclick="myscript()">
+  <input type="button" class="button" value="print pdf" onclick="myscript()">
   <br>
-  <a href="index.jsp">Home</a>
+  <button><a href="index.jsp">Home</a></button>
   
   </body>
 </body>

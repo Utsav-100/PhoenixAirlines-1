@@ -14,30 +14,43 @@ prefix="form" %>
 
 <link href="${pageContext.request.contextPath}/resources/css/mystyle.css" 
 rel="stylesheet" />
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 
+<script>
 
+window.onload=function(){
+	
+var password = document.getElementById("password");
+var confirm_password =document.getElementById("confirm_password");
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
 
-<script type="text/javascript">
+function validatePassword(){
+	
+if(password.value != confirm_password.value) {
+	
+  confirm_password.setCustomValidity("Passwords Don't Match");
+  
+} 
+else {
+  confirm_password.setCustomValidity('');
+}
 
-$(function () {
-    $("#datepicker").datepicker({
-        changeMonth: true,
-        changeYear: true,
-        yearRange: '-100:+0'
+}
+
+$(document).ready(function(){
+    $( "#dob" ).datepicker({
+        dateFormat : 'mm/dd/yy',
+        changeMonth : true,
+        changeYear : true,
+        yearRange: '-100y:c+nn',
+        maxDate: '-1d'
     });
 });
 
-var password = document.getElementById("password")
-var confirm_password = document.getElementById("confirm_password")
-function validatePassword(){
-	  if(password.value != confirm_password.value) {
-	    confirm_password.setCustomValidity("Passwords Don't Match");
-	  } else {
-	    confirm_password.setCustomValidity('');
-	  }
-	}
-
-
+}
 </script>
 
 
@@ -54,36 +67,39 @@ function validatePassword(){
 </div>
 
 <c:url var="addAction" value="/user/add" ></c:url> 
-<form:form  action="${addAction}" modelAttribute="flightuser" style="width:550px; background-color:white; border-radius:3%">
+<form:form  action="${addAction}" modelAttribute="flightuser" style="width:550px; background-color:white; border-radius:3%" autocomplete="off">
 
   <div class="container" align="left" style="padding-left:60px; padding-top:30px">
   
-    <form:radiobutton path="title" value="M"/>Male 
-    <form:radiobutton path="title" value="F"/>Female 
+    <form:radiobutton path="title" value="M" required="required"/>Male 
+    <form:radiobutton path="title" value="F" required="required"/>Female 
+   
+    
     <br><br>
+    
     <label for="fname">First Name</label>
-    <form:input  path="firstName" type="text"  placeholder="Enter Firstname"/><br>
+    <form:input  path="firstName" type="text"  placeholder="Enter Firstname" required="required"/><br>
     
     <label for="lname">Last Name</label>
-    <form:input path="lastName" type="text" placeholder="Enter Lastname"  />
+    <form:input path="lastName" type="text" placeholder="Enter Lastname" required="required" />
     
     <label for="pass">Password</label>
-    <form:input path="password" type="password" id="password" placeholder="Enter Password" />
+    <form:input path="password"  type="password" id="password" placeholder="Enter Password" required="required"/>
     
     <label for="cpass">Confirm Password</label>
-    <input type="password" placeholder="Confirm Password" id="confirm_password"><br>
+    <input type="password"  placeholder="Confirm Password" id="confirm_password" required="required" ><br>
     
     <label for="E-mail">E-mail Address</label>
-    <form:input path="email" type="email" placeholder="Enter Email" /><br>
+    <form:input path="email" type="email" placeholder="Enter Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" /><br>
 
     <label for="dob">Date Of Birth</label>
-    <form:input path="dob" type="date" placeholder="Date of Birth" /><br>
+    <form:input path="dob" type="text" placeholder="Date of Birth" required="required" id="dob" autocomplete="false" /><br>
     
     <label for="contact">Contact</label>
-    <form:input path="contact" type="number" placeholder="Enter Contact Number" /><br>
+    <form:input path="contact" type="tel" placeholder="Enter Contact Number" required="required" pattern="^\d{3}\d{3}\d{4}$" /><br>
        
       <div align="center"> 
-    <button  type="submit"><b>Sign Up</b></button>
+    <button  type="submit" ><b>Sign Up</b></button>
 	  </div>
   
   </div>
@@ -100,39 +116,3 @@ function validatePassword(){
 </html>
 
 
-
-<!-- 
-This is user register page
-
-<c:url var="addAction" value="/user/add" ></c:url>
- 
-<form:form  action="${addAction}" modelAttribute="flightuser">
- 
-<form:radiobutton path="title" value="M"/>Male 
-<form:radiobutton path="title" value="F"/>Female 
-                    
- <form:label path="firstName">firstname</form:label>
- <form:input type="text" path="firstName" required="required" autocomplete="off" />
- <br>
- <form:label path="lastName">lastName</form:label>
- <form:input type="text" path="lastName" required="required" autocomplete="off" />
- <br>
- <form:label path="password">password</form:label>
- <form:input type="text" path="password" required="required" autocomplete="off" />
- <br>
- <form:label path="email">email</form:label>
- <form:input type="text" path="email" required="required" autocomplete="off" />
- <br>
- <form:label path="dob">dob</form:label>
- <form:input type="date" path="dob" required="required" autocomplete="off" />
- <br>
- <form:label path="contact">contact</form:label>
- <form:input type="number" path="contact" required="required" autocomplete="off" />   
-    
-<input type="submit"  value="<spring:message 
-					text="Add FlightUser"/>" />  
-					  
- </form:form>
- -->
-</body>
-</html>

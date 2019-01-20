@@ -22,7 +22,7 @@
 	<context:component-scan base-package="com.phoenixair.serviceimp" />
 	<context:component-scan base-package="com.phoenixair.services" />
 	<context:component-scan base-package="com.phoenixair.daoimp" />
-
+      
 	<context:annotation-config />
 	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 

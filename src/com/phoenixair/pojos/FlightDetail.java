@@ -3,6 +3,7 @@ package com.phoenixair.pojos;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -36,7 +37,7 @@ public class FlightDetail {
 	private String saturday;
 	private String sunday;
 	
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private List<Passengers> passengers;
 	
 	
